@@ -1,4 +1,4 @@
-package Ejercicio_buzón_hilos;
+package Ejercicio_buzÃ³n_hilos;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -9,7 +9,7 @@ import java.net.Socket;
 import java.util.HashMap;
 /*
  *  @author Enrique Albors
- * Clase encargada de la gestión de  las nuevas conexiones y 
+ * Clase encargada de la gestiÃ³n de  las nuevas conexiones y 
  * asociarles un hilo para su desarrollo
  * */
 
@@ -34,10 +34,10 @@ public class ServerPrincipal {
 			while (true) {//se inicia un bucle infirnito 
 				Socket s = null;
 				try {
-					// objeto socket para recibir solicitudes de clientes entrantes
-					s = server.accept();// se acepta conexion cliente
+					// se queda a la espera de acepta conexiones cliente
+					s = server.accept();
 
-					// obteniendo input y output streams
+					// para recuperar los datos de entrada salida 
 					DataInputStream dis = new DataInputStream(s.getInputStream());
 					DataOutputStream dos = new DataOutputStream(s.getOutputStream());
 					System.out.println("Hilo para nuevo cliente creado");
