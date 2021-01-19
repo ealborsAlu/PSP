@@ -1,4 +1,4 @@
-package Ejercicio_buzÛn_hilos;
+package Ejercicio_buz√≥n_hilos;
 
 import java.io.*;
 import java.net.InetSocketAddress;
@@ -8,13 +8,13 @@ import java.util.Scanner;
 
 /*
  *  @author Enrique Albors
- * Clase que usar· el usuario para la comunicaciÛn con el hilo
+ * Clase que usar√° el usuario para la comunicaci√≥n con el hilo
  * */
 public class Cliente {
 
 	public static void main(String[] args) {
 		
-		//InicializaciÛn de las clases y variables
+		//Inicializaci√≥n de las clases y variables
 		DataInputStream in;
 		DataOutputStream out;
 		Scanner usuario = new Scanner(System.in);
@@ -24,7 +24,7 @@ public class Cliente {
 		try {
 			
 			Socket socket = new Socket();
-
+			//se configura la ip y el puerto con la que trabajar√°
 			InetSocketAddress addr = new InetSocketAddress("localhost", 5000);
 			socket.connect(addr);
 			in = new DataInputStream(socket.getInputStream());
@@ -49,8 +49,8 @@ public class Cliente {
 				opc = "";
 				opc = opcion.nextLine();
 				switch (opc) {
-				case "1"://OpciÛn para leer los mensajes enviados al usuario
-					out.writeUTF("1");//se le indica la opciÛn elegida al servidor
+				case "1"://Opci√≥n para leer los mensajes enviados al usuario
+					out.writeUTF("1");//se le indica la opci√≥n elegida al servidor
 					String msgs = in.readUTF();
 					if (msgs == "") {
 						System.out.println("no tiene mensajes");
@@ -58,8 +58,8 @@ public class Cliente {
 						System.out.println(msgs);
 					}
 					break;
-				case "2"://OpciÛn para crear mensajes
-					out.writeUTF("2");//se le indica la opciÛn elegida al servidor
+				case "2"://Opci√≥n para crear mensajes
+					out.writeUTF("2");//se le indica la opci√≥n elegida al servidor
 
 					//se le indica al servidor a que usuario hay que enviarle el mensaje
 					String mensaje3 = in.readUTF();//mensaje del servidor , preguntando por el nombre del remitente
@@ -69,7 +69,7 @@ public class Cliente {
 
 					teclado = new Scanner(System.in);// se resetea el teclado
 					
-					//Se le indicar· al servidor el cuerpo del mensaje a enviar 
+					//Se le indicar√° al servidor el cuerpo del mensaje a enviar 
 					String mensaje4 = in.readUTF();
 					System.out.println(mensaje4);// lo que llega por server mensaje a enviar
 					String mensajeEnviar = teclado.nextLine();
@@ -91,7 +91,7 @@ public class Cliente {
 			socket.close();// se desconecta el cliente
 			System.out.println("Desconectado");
 
-			//CapataciÛn de excepciones
+			//Capataci√≥n de excepciones
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
