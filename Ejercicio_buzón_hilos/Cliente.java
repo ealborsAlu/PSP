@@ -87,8 +87,8 @@ public class Cliente {
 					break;
 				}
 			}
-
-			socket.close();// se desconecta el cliente
+			// se desconecta el cliente
+			socket.close();
 			System.out.println("Desconectado");
 
 			//Capatación de excepciones
