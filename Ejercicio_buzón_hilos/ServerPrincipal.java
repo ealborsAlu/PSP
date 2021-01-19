@@ -58,7 +58,6 @@ public class ServerPrincipal {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 }
