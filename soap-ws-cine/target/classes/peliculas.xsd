@@ -1,0 +1,117 @@
+<!-- IMPORTANTE , para la creacion correcta , debemos poner el mismo nombre 
+	que nuestro principal y para darle al paso previo de "generar recursos , 
+	hay que poner como queremos que se llame " -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://www.cine.com/xml/peliculas"
+	targetNamespace="http://www.cine.com/xml/peliculas"
+	elementFormDefault="qualified">
+
+
+	<!-- se crea el esquema de datos de las peliculas -->
+	<xs:complexType name="Pelicula">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" />
+			<xs:element name="duracion" type="xs:int" />
+			<xs:element name="genero" type="xs:string" />
+			<xs:element name="productora" type="xs:string" />
+			<xs:element name="Director" type="tns:Director" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- se crea el esquema de datos del autor -->
+	<xs:complexType name="Director">
+		<xs:sequence>
+			<xs:element name="nombre" type="xs:string" />
+			<xs:element name="edad" type="xs:int" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<!-- Servicio 1 -->
+	<!-- Obetener toda la información de una pelicula -->
+	<!-- Pregunta que se le envia al servidor , se le pasa una cadena , en este 
+		caso el nombre de la pelicula -->
+	<xs:element name="PeliculaDetailsRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- respuesta que envia el servidor ,delvolviendo un objeto cadena -->
+	<xs:element name="PeliculaDetailsResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Pelicula" type="tns:Pelicula" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Servicio 2 -->
+	<!-- Obetener el genero de una pelicula -->
+	<!-- Pregunta que se le envia al servidor , se le pasa una cadena , en este 
+		caso el nombre de la pelicula -->
+	<xs:element name="PeliculaGeneroRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- respuesta que envia el servidor ,delvolviendo un objeto string -->
+	<xs:element name="PeliculaGeneroResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="genero" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Servicio 3 -->
+	<!-- Obetener la duración de una pelicula -->
+	<!-- Pregunta que se le envia al servidor , se le pasa una cadena , en este 
+		caso el nombre de la pelicula -->
+
+	<xs:element name="PeliculaDuracionRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- respuesta que envia el servidor ,delvolviendo un objeto string -->
+	<xs:element name="PeliculaDuracionResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="duracion" type="xs:int" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Servicio 4 -->
+	<!-- Obetener toda la información del director  -->
+	<!-- Pregunta que se le envia al servidor , se le pasa una cadena , en este caso el nombre de un director -->
+	<xs:element name="DirectorDetailsRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="nombre" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- respuesta que envia el servidor ,delvolviendo un objeto cadena -->
+	<xs:element name="DirectorDetailsResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Director" type="tns:Director" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+
+
+</xs:schema>
