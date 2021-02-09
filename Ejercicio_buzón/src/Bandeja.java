@@ -8,7 +8,7 @@ public class Bandeja {
 	//atributos
 	HashMap<String, String> mensajes = new HashMap<String, String>();
 
-	//m�todo constructor 
+	//método constructor 
 	public Bandeja() {
 		
 		//mensajes base , un usuario y un mensaje
@@ -18,7 +18,8 @@ public class Bandeja {
 
 	}
 
-	//asber 
+	//método sincronizado para saber si exite un usuario o no
+	//se le pasa un nombre de usuario y devuelve un boolean
 	public synchronized boolean usuarioExiste(String nomUsr) {
 		boolean OK = true;
 		if (!mensajes.containsKey(nomUsr)) {
@@ -29,6 +30,8 @@ public class Bandeja {
 		return OK;
 	}
 	
+	//método sincronizado para la lectura de mensajes
+	//se le pasa un nombre de usuario y devuelve su valor
 	public synchronized String leer(String nomUsr) {
 		String mensaje="";
 		mensaje = mensajes.get(nomUsr);
@@ -36,11 +39,14 @@ public class Bandeja {
 		return mensaje;
 		
 	}
+	
+	//método sincronizado para borrar los mensajes una vez leido
 	public synchronized void borrar(String nomUsr) {
 		mensajes.put(nomUsr , "");
 		
 	}
-	//
+	//método sincronizado para redactar mensajes
+	//se le pasa un nombreusuario y el cuerpo del mensaje 
 	public synchronized void redacta(String nomUsr , String texto) {
 		mensajes.put(nomUsr , mensajes.get(nomUsr) + "\n " + (" - " +texto));
 	}
