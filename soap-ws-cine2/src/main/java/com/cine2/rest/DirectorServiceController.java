@@ -106,14 +106,21 @@ public class DirectorServiceController {
 
 	//------------------------------------------------------- Métodos CRUD para director-------------------------------------------------------
 
-	// Listar todos los directores,
+	// Listar todos los directores
+	/**
+	 * @return devuelve los datos de los directores
+	 */
 	@GetMapping("/directores")
 	public ResponseEntity<Object> getDirector() {
 		return new ResponseEntity<>(directorRepo.values(), HttpStatus.OK);
 	}
 
 	// Listar un director en específico
-	// En la url se le pasa por parametros el id del director
+	/**
+	 * 
+	 * @param id del director determinado a saber
+	 * @return se devuelven los datos del director
+	 */
 	@GetMapping("/directores/{id}")
 	public ResponseEntity<Object> getDirectoresId(@PathVariable("id") String id) {
 		if (directorRepo.containsKey(id)) {
@@ -124,6 +131,11 @@ public class DirectorServiceController {
 	}
 
 	// CREAR un director
+	/**
+	 * 
+	 * @param director 
+	 * @return  mensaje para usuario  indicando resultado de operacion correcta o incorrecta
+	 */
 	@PostMapping("/directores")
 	public ResponseEntity<Object> createDirector(@RequestBody Director director) {
 		directorRepo.put(director.getId(), director);
@@ -131,7 +143,12 @@ public class DirectorServiceController {
 	}
 
 	// Actualizar un director
-	// En la url se le pasa por parametros el id del director
+	/**
+	 * 
+	 * @param id del director a editar
+	 * @param director
+	 * @return  mensaje para usuario  indicando resultado de operacion correcta o incorrecta 
+	 */
 	@PutMapping("/directores/{id}")
 	public ResponseEntity<Object> updateDirector(@PathVariable("id") String id, @RequestBody Director director) {
 		directorRepo.remove(id);
@@ -141,7 +158,11 @@ public class DirectorServiceController {
 	}
 
 	// Borrar una director en en específico
-	// En la url se le pasa por parametros el id del director
+	/**
+	 * 
+	 * @param id del director a borrar
+	 * @return  mensaje para usuario  indicando resultado de operacion correcta o incorrecta
+	 */
 	@DeleteMapping("/directores/{id}")
 	public ResponseEntity<Object> deleteDirector(@PathVariable("id") String id) {
 		directorRepo.remove(id);
@@ -151,7 +172,11 @@ public class DirectorServiceController {
 	//--------------------------------------------------------------CRUD Peliculas--------------------------------------------------------------
 
 	// Listar todas las películas de un director
-	// En la url se le pasa por parametros el id del director
+	/**
+	 * 
+	 * @param idD , id del director a la que se le asignara una pelicula
+	 * @return devuelve un array con las peliculas determinadas 
+	 */
 	@GetMapping("/directores/{idD}/peliculas")
 	public ResponseEntity<Object> getPeliculas(@PathVariable("idD") String idD) {
 		Map<String, Pelicula> peliculaRepoAdicional = new HashMap<>();// hashamp adicional , se guardarán la película que se busquen
@@ -169,7 +194,12 @@ public class DirectorServiceController {
 	}
 
 	// Listar una pelicula determinada del director indicado
-	// En la url se le pasa por parametros el id del director (idD) y la id de la película (idP)
+	/**
+	 * 
+	 * @param idD , id del director 
+	 * @param idP , id de la película
+	 * @return  mensaje para usuario  indicando resultado de operacion correcta o incorrecta
+	 */
 	@GetMapping("/directores/{idD}/peliculas/{idP}")
 	public ResponseEntity<Object> getPeliculaById(@PathVariable("idD") String idD, @PathVariable("idP") String idP) {
 		if (peliculaRepo.get(idP).getDirector().getId().equals(idD)) {
@@ -182,7 +212,12 @@ public class DirectorServiceController {
 	}
 
 	// Crear una pelicula con los datos del director que se le indique
-	// En la url se le pasa por parametros el id del director (idD) , que será la que se asociará a el 
+	/**
+	 * 
+	 * @param idD ,  id del director
+	 * @param pelicula , objeto que se usará para crear la nueva película
+	 * @return  mensaje para usuario  indicando resultado de operacion correcta o incorrecta
+	 */
 	@PostMapping("/directores/{idD}/peliculas")
 	public ResponseEntity<Object> createPelicula(@PathVariable("idD") String idD, @RequestBody Pelicula pelicula) {
 		pelicula.setDirector(directorRepo.get(idD));//se  le añade el director a la película
@@ -191,7 +226,13 @@ public class DirectorServiceController {
 	}
 
 	// Actualizar pelicula de un director determinado
-	// En la url se le pasa por parametros el id del director (idD)  y la id de la película (idP)
+	/**
+	 * 
+	 * @param idD ,  id del director
+	 * @param idP , id de la película
+	 * @param  pelicula , objeto que se usará para crear la nueva película que remplazará a la anterior
+	 * @return  mensaje para usuario  indicando resultado de operacion correcta o incorrecta
+	 */
 	@PutMapping("/directores/{idD}/peliculas/{idP}") // id del director -------------- id de la pelicula---------------objeto pelicula que se usará como nueva
 	public ResponseEntity<Object> upadtePelicula(@PathVariable("idD") String idD, @PathVariable("idP") String idP,@RequestBody Pelicula pelicula) {
 		if (peliculaRepo.get(idP).getDirector().getId().equals(idD)) {//si existe la película
@@ -205,7 +246,12 @@ public class DirectorServiceController {
 	}
 
 	// Borrar pelicula de un director determinado
-	// En la url se le pasa por parametros el id del director (idD)  y la id de la película (idP)
+	/**
+	 * 
+	 * @param idD ,  id del director
+	 * @param idP ,  id de la película
+	 * @return mensaje para usuario  indicando resultado de operacion correcta o indcorrecta
+	 */
 	@DeleteMapping("/directores/{idD}/peliculas/{idP}")
 	public ResponseEntity<Object> deletePelicula(@PathVariable("idD") String idD, @PathVariable("idP") String idP) {
 		if (peliculaRepo.get(idP).getDirector().getId().equals(idD)) {
