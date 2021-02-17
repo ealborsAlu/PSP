@@ -60,7 +60,7 @@ public class CineServiceController {
 	// Listar un cine en específico
 	/**
 	 * 
-	 * @param id
+	 * @param id , id del cine determinado
 	 * @return devuelve el cine indicando
 	 */
 	@GetMapping("/cines/{id}")
@@ -71,8 +71,8 @@ public class CineServiceController {
 	// CREAR un cine
 	/**
 	 * 
-	 * @param cine
-	 * @return  mensaje para usuario  indicando resultado de operacion correcta o indcorrecta
+	 * @param cine objeto que se usará para la cración de un cine 
+	 * @return  mensaje para usuario  indicando resultado de operacion correcta o incorrecta
 	 */
 	@PostMapping("/cines")
 	public ResponseEntity<Object> creteCine(@RequestBody Cine cine) {
@@ -82,9 +82,9 @@ public class CineServiceController {
 	// Actualizar  un cine
 	/**
 	 * 
-	 * @param id
-	 * @param cine
-	 * @return  mensaje para usuario  indicando resultado de operacion correcta o indcorrecta
+	 * @param id , id del cine a actualizar
+	 * @param cine , objeto que se usará para sustiuir al eliminado
+	 * @return  mensaje para usuario  indicando resultado de operacion correcta o incorrecta
 	 */
 	@PutMapping("/cines/{id}")
 	public ResponseEntity<Object> updateCine(@PathVariable("id") String id, @RequestBody Cine cine) {
@@ -98,8 +98,8 @@ public class CineServiceController {
 	// Borrar una cine  en en específico
 	/**
 	* 
-	* @param id
-	* @return  mensaje para usuario  indicando resultado de operacion correcta o indcorrecta
+	* @param id , id del cine a eliminar
+	* @return  mensaje para usuario  indicando resultado de operacion correcta o incorrecta
 	*/
 	@DeleteMapping("/cines/{id}")
 	public ResponseEntity<Object> deleteCine(@PathVariable("id") String id) {
