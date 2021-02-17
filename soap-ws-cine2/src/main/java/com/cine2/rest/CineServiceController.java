@@ -48,37 +48,59 @@ public class CineServiceController {
 	//----------------------------------------------Métodos CRUD----------------------------------------------
 	
 	// Listar todos los cines
+	/**
+	 * 
+	 * @return  devuelve los cines
+	 */
 	@GetMapping("/cines")
 	public ResponseEntity<Object> getCine() {
 		return new ResponseEntity<>(cineRepo.values(), HttpStatus.OK);
 	}
 
 	// Listar un cine en específico
-	//Se le indicará por parametros el id del cine
+	/**
+	 * 
+	 * @param id
+	 * @return devuelve el cine indicando
+	 */
 	@GetMapping("/cines/{id}")
 	public ResponseEntity<Object> getCinesId(@PathVariable("id") String id) {
 		return new ResponseEntity<>(cineRepo.get(id), HttpStatus.OK);
 	}
 
 	// CREAR un cine
+	/**
+	 * 
+	 * @param cine
+	 * @return  mensaje para usuario  indicando resultado de operacion correcta o indcorrecta
+	 */
 	@PostMapping("/cines")
 	public ResponseEntity<Object> creteCine(@RequestBody Cine cine) {
 		cineRepo.put(cine.getId(), cine);
 		return new ResponseEntity<>("Cine creado correctamente", HttpStatus.CREATED);
 	}
 	// Actualizar  un cine
-	//Se le indicará por parametros el id del cine
-		@PutMapping("/cines/{id}")
-		public ResponseEntity<Object> updateCine(@PathVariable("id") String id, @RequestBody Cine cine) {
-			cineRepo.remove(id);
-			cine.setId(id);
-			cineRepo.put(id, cine);
-			return new ResponseEntity<>("Cine actualizada correctamente", HttpStatus.OK);
-		}
+	/**
+	 * 
+	 * @param id
+	 * @param cine
+	 * @return  mensaje para usuario  indicando resultado de operacion correcta o indcorrecta
+	 */
+	@PutMapping("/cines/{id}")
+	public ResponseEntity<Object> updateCine(@PathVariable("id") String id, @RequestBody Cine cine) {
+		cineRepo.remove(id);
+		cine.setId(id);
+		cineRepo.put(id, cine);
+		return new ResponseEntity<>("Cine actualizada correctamente", HttpStatus.OK);
+	}
 		 
 
 	// Borrar una cine  en en específico
-	//Se le indicará por parametros el id del cine
+	/**
+	* 
+	* @param id
+	* @return  mensaje para usuario  indicando resultado de operacion correcta o indcorrecta
+	*/
 	@DeleteMapping("/cines/{id}")
 	public ResponseEntity<Object> deleteCine(@PathVariable("id") String id) {
 		cineRepo.remove(id);
