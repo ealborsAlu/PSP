@@ -250,7 +250,7 @@ public class DirectorServiceController {
 	 * 
 	 * @param idD ,  id del director
 	 * @param idP ,  id de la película
-	 * @return mensaje para usuario  indicando resultado de operacion correcta o indcorrecta
+	 * @return mensaje para usuario  indicando resultado de operacion correcta o incorrecta
 	 */
 	@DeleteMapping("/directores/{idD}/peliculas/{idP}")
 	public ResponseEntity<Object> deletePelicula(@PathVariable("idD") String idD, @PathVariable("idP") String idP) {
